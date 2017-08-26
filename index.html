@@ -2,74 +2,65 @@
 
 <html lang='eng'>
 	<head>
-		<title>Rodrigo Dorantes-Gilardi's personal page</title>
+		<link rel="stylesheet" type='text/css' href='assets/style.css'>
+		<title>RDG - Home</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans"
+		type='text/css' rel="stylesheet">
 	</head>
 
 	<body>
-		<h1 align='center'><u>Rodrigo Dorantes-Gilardi</u></h1>
-		<div align='center' id="nav">
-			<a href="#left-column">Home</a> &#9650;
-			<a href="#about-me">About Me</a> &#9650;
-			<a href="#research-interests">Research interests </a> &#9650;
-			<a href="#papers">Papers</a> &#9650;
-			<a href="#cv">CV</a> &#9650;
-			<a href="#code">Code</a> &#9650;
-			<a href="#contact">Contact</a>
+
+		<div class=top>
+			<ul class="nav">
+				<a href="#home"><li>home</li></a>
+				<a href="research.html"><li>research interests</li></a>
+				<a href="papers.html"><li>publications</li></a>
+				<a href="code.html"><li>code</li></a>
+				<a href="resume.html"><li>résumé</li></a>
+			</ul>
+			<div class=break></div>
+			
+<h1 class="header">Rodrigo Dorantes-Gilardi</h1>
+<div class='green bar'></div>
+<div class='blue bar'></div>
+
+			<div class=break></div>
 		</div>
 
-		<div id="main_image">
-			<img src="assets/images/me.jpg" alt="That's me" width="280" height="260">
-		</div>
+
 
 		<div id='about-me'>
-			<h2> About Me </h2>
-			<p> I'm currently working on a PhD in applied mathematics at the
-			University of Grenoble, France. Although officially part of the
-			University of Grenoble, France; my working is done at the Complex
-			Systems Institute at the École Normale Supérieure in Lyon, France.</p>
 
-			<p>My work orbits around biological (amino acids) structures modeling
-			through network theory and discrete mathemicatics and
-			their applications to biology. My advisors are <a
+		<div id="cleft">
+			<img id="mountains" src="assets/images/me.jpg" alt ='that me'
+			width='280px' height='240px'>
+		</div>
+
+		<div id='cright'>
+			<p id='marginp'>
+			I'm a PhD student in applied mathematics at <a
+				href='https://www.lama.univ-savoie.fr/index.php'>Lama</a> under the
+			supervision of <a
 				href='https://www.researchgate.net/profile/Claire_Lesieur'>Claire
-				Lesieur</a> and <a href='https://www.lama.univ-savoie.fr/~vuillon/'>
-				Laurent Vuillon</a>.</p>
+				Lesieur</a>  and <a href='https://www.lama.univ-savoie.fr/~vuillon/'>
+				Laurent Vuillon</a>.
+			Since June 2016 I've been a visiting researcher at the complex systems
+											 institute <a
+											 href='http://www.ixxi.fr/'>IXXI</a>.
+			</p>
+
+			<p>
+			My work is at the frontier between data science, mathematics, and biology.
+			It is based on the modeling of protein structures which are understood a
+			set of points in three-dimensional space. My research topics include:
+			measuring variations in the structure with the help of networks and
+			quantifying things like holes in the structure with triangulation
+			algorithms.
 		</div>
 
-		<div id='research-interests'>
-			<h2> Research Interests </h2>
-			Im currently working and/or interested on the following subjects:
-			<ul><li>Network Theory</li>
-				<li>Amino acid networks</li>
-				<li>Spatial algorithms in 3D</li>
-				<li>Data mining</li>
-			</ul>
-		</div>
 
 		<div id=papers>
-			<h2> Papers </h2>
-			<a href='http://pubs.rsc.org/en/content/articlelanding/2016/cp/c5cp06091e#!divAbstract'>Structural robustness to mutations: an in silico
-				investigation</a> (2016) <br>
-			Protein structure performances upon mutations: It takes two to tango
-			(Under redaction). <br>
-			Impact measures on amino acid networks, one case study (Under redaction).
-		</div>
-
-		<div id='cv'>
-			<h2> Curriculum Vitae </h2>
-			You can find my CV <a href='assets/cv.pdf'>Here</a>.
-		</div>
-		
-		<div id='code'>
-			<h2> Code </h2>
-			Currently I'm working on the developpement of a Python module dealing
-			with amino acid networks constructed from structural protein files (e.g.
-			pdb) based on the networkx and biopython packages. Additionally, it
-			contains implementations of algorithms measuring the void or emptyness
-			around amino acids in the structure. The code can be found
-			<a href="https://github.com/rodogi/biographs">here</a>.
-		</div>
-
+	
 		<div id='contact'>
 			<h2> Contact </h2>
 			<b>email</b>: rodrigo.dorantes-gilardi@ens-lyon.fr <br>

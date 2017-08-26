@@ -1,0 +1,40 @@
+body {font-family: 'Open Sans', sans-serif;
+}
+
+h1.header {
+	text-align: right;
+}
+
+ul.nav {
+	list-style-type:none;
+	padding:0;
+}
+
+ul.nav li:hover{
+	background: yellow;
+}
+
+ul.nav li{
+	float: left;
+	margin: 0 10px;
+	color: black;
+}
+
+#marginp {
+	margin: 0cm;
+}
+
+#cleft {
+	float: left;
+	width: 300px;
+}
+
+#cright {
+	float: right;
+	width: 700px;
+	height: 260px;
+}
+
+#about-me {
+	width: 1000px;
+}
