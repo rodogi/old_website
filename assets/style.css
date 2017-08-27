@@ -1,6 +1,21 @@
 body {font-family: 'Open Sans', sans-serif;
 }
 
+.top{
+	border-bottom: 1px solid gray;
+}
+
+.top h1{
+	color: gray;
+}
+
+#code {
+	word-wrap: break-word;
+	width: 1000px;
+}
+
+
+
 h1.header {
 	text-align: right;
 }
