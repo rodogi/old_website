@@ -1,5 +1,12 @@
 body {font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	margin: 30px;
+	line-height: 1.4;
+	color:#444;
+	padding:0;
 }
+
+
 
 .top{
 	border-bottom: 1px solid gray;
