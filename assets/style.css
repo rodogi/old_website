@@ -6,8 +6,6 @@ body {font-family: 'Open Sans', sans-serif;
 	padding:0;
 }
 
-
-
 .top{
 	border-bottom: 1px solid gray;
 }
@@ -20,8 +18,6 @@ body {font-family: 'Open Sans', sans-serif;
 	word-wrap: break-word;
 	width: 1000px;
 }
-
-
 
 h1.header {
 	text-align: right;
@@ -38,7 +34,7 @@ ul.nav li:hover{
 
 ul.nav li{
 	float: left;
-	margin: 0 10px;
+	margin: 10px;
 	color: black;
 }
 
@@ -55,6 +51,16 @@ ul.nav li{
 	float: right;
 	width: 700px;
 	height: 260px;
+}
+
+#ccenter{
+	width: 830px;
+	height: 500px;
+	margin: 0px auto 0px auto;
+}
+
+h2{
+	text-align: center
 }
 
 #about-me {
