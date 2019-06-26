@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Create a network with Graph-tool and Pandas</title>
+<!-- 2019-06-26 Wed 12:16 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Rodrigo Dorantes-Gilardi">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script type="text/javascript">
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-9"><h1 class="title">Create a network with Graph-tool and Pandas</h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Graph-tool</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+I recently discovered the python package <a href="https://graph-tool.skewed.de/">graph-tool</a> for network analysis.
+</p>
+
+<blockquote>
+<p>
+Contrary to most other python modules with similar functionality, the core data structures and
+algorithms are implemented in C++, making extensive use of template metaprogramming, based heavily
+on the Boost Graph Library. This confers it a level of performance that is comparable (both in
+memory usage and computation time) to that of a pure C/C++ library.
+</p>
+
+<p>
+&#x2013; Tiago Peixoto, creator of graph-tool.
+</p>
+</blockquote>
+
+<p>
+Some other really cool features (besides speed) of <code>graph-tool</code> are:
+</p>
+<ul class="org-ul">
+<li>Graph filtering, or Graph Views
+</li>
+<li>Interactive drawing with some neat layouts
+</li>
+<li>A bunch of topological algorithms for network analysis
+</li>
+<li>Solid documentation (although could use more examples, hence this post)
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Pandas</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+When doing network analysis, I usually keep a <code>pandas.DataFrame</code> on the side as it is very
+convenient for:
+</p>
+<ul class="org-ul">
+<li>Main structural parameters of the network
+</li>
+<li>Node list with node attributes
+</li>
+<li>Edge list with edge attributes
+</li>
+</ul>
+
+<p>
+For this reason, I usually have my networks saved like comma separated value files representing
+edgelists of the sort:
+</p>
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+<caption class="t-above"><span class="table-number">Table 1:</span> table.csv</caption>
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+
+<col  class="right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="text-left">node<sub>1</sub></th>
+<th scope="col" class="text-left">node<sub>2</sub></th>
+<th scope="col" class="text-left">color</th>
+<th scope="col" class="text-right">weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-left">a</td>
+<td class="text-left">b</td>
+<td class="text-left">red</td>
+<td class="text-right">2</td>
+</tr>
+
+<tr>
+<td class="text-left">a</td>
+<td class="text-left">c</td>
+<td class="text-left">black</td>
+<td class="text-right">5</td>
+</tr>
+
+<tr>
+<td class="text-left">b</td>
+<td class="text-left">c</td>
+<td class="text-left">red</td>
+<td class="text-right">1</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+With:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900; font-weight: bold;">import</span> pandas <span style="color: #859900; font-weight: bold;">as</span> pd
+
+<span style="color: #268bd2;">df</span> = pd.read_csv(<span style="color: #2aa198;">"table.csv"</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Create network with graph tool</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+To create a network from a <code>pandas.DataFrame</code> representing an edge-list, the syntax is a bit less
+straightforward than in say <code>networkx</code>, but it is simple:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900; font-weight: bold;">import</span> pandas <span style="color: #859900; font-weight: bold;">as</span> pd
+<span style="color: #859900; font-weight: bold;">import</span> graph_tool.<span style="color: #657b83; font-weight: bold;">all</span> <span style="color: #859900; font-weight: bold;">as</span> gt
+<span style="color: #859900; font-weight: bold;">import</span> numpy <span style="color: #859900; font-weight: bold;">as</span> np
+
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Load table</span>
+<span style="color: #268bd2;">df</span> = pd.read_csv(<span style="color: #2aa198;">"table.csv"</span>)
+
+<span style="color: #268bd2;">g</span> = gt.Graph()
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Set property maps for edge attributes</span>
+<span style="color: #268bd2;">weight</span> = g.new_edge_property(<span style="color: #2aa198;">'int'</span>)
+<span style="color: #268bd2;">color</span> = g.new_edge_property(<span style="color: #2aa198;">'string'</span>)
+
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Create numpy array of edgelist</span>
+<span style="color: #268bd2;">edglist</span> = df.values
+
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Add edges</span>
+<span style="color: #268bd2;">node_id</span> = g.add_edge_list(edgelist, hashed=<span style="color: #268bd2; font-weight: bold;">True</span>, eprops=[color, weight])
+
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Access node id of each vertex</span>
+<span style="color: #859900; font-weight: bold;">for</span> node <span style="color: #859900; font-weight: bold;">in</span> <span style="color: #657b83; font-weight: bold;">range</span>(g.num_vertices()):
+    <span style="color: #859900; font-weight: bold;">print</span>(<span style="color: #2aa198;">"Node {} has id: {}"</span>.<span style="color: #657b83; font-weight: bold;">format</span>(node, node_id[node]))
+</pre>
+</div>
+
+<p>
+Now you're all set to use the nice algorithms of <code>graph-tool</code>. Before saving your network, remember
+to also save the node ids or labels as an internal vertex property map of the graph:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #268bd2;">g.vertex_properties</span>[<span style="color: #2aa198;">'node_id'</span>] = node_id
+
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Same with edge properties `color` and `weight`</span>
+<span style="color: #268bd2;">g.edge_properties</span>[<span style="color: #2aa198;">'color'</span>] = color
+<span style="color: #268bd2;">g.edge_properties</span>[<span style="color: #2aa198;">'weight'</span>] = weight
+
+<span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Save graph</span>
+g.save(<span style="color: #2aa198;">'my_network.graphml'</span>)
+</pre>
+</div>
+</div>
+</div>
+</div><div class="col-md-3"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Graph-tool</a></li>
+<li><a href="#sec-2">2. Pandas</a></li>
+<li><a href="#sec-3">3. Create network with graph tool</a></li>
+</ul>
+</div>
+</nav>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: Rodrigo Dorantes-Gilardi</p>
+<p class="date">Created: 2019-06-26 Wed 12:16</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org-mode</a> 9.1.9)</p>
+</div>
+</footer>
+</body>
+</html>
