@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>What cities appear more often in El País articles?</title>
+<!-- 2019-07-22 Mon 13:16 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Rodrigo Dorantes-Gilardi">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script type="text/javascript">
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-9"><h1 class="title">What cities appear more often in El País articles?</h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+El País is one of the most well-known newspapers in the Hispanic world. Personally, it is one of
+my favorites as its American (Latin American) version has news from all over the region (I live in
+Mexico).
+</p>
+
+<p>
+I've been an `El País' reader for a few years now, and I can't help but notice that the Latin
+American version is not that well balanced. Indeed, most of the articles I see on their front page
+come from Mexico.
+</p>
+
+<p>
+In order to get the countries of the main articles, I took all the articles on the front-page from
+2018 using python modules <code>requests</code> and <code>beautifulsoup</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Results</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://elpais.com/elpais/portada_america.html">El País</a> front-page website is written in <code>html</code> and has its articles separated by <code>&lt;article&gt;</code> and
+<code>&lt;/article&gt;</code> tags. Inside these tags you can find the title of the article with the class
+<code>"articulo-titulo"</code> and the location of the article with class <code>"articulo-localizacion"</code> inside a
+<code>dev</code> tag.
+</p>
+
+<p>
+After getting the text from the article with:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900; font-weight: bold;">import</span> requests
+<span style="color: #859900; font-weight: bold;">from</span> bs4 <span style="color: #859900; font-weight: bold;">import</span> BeautifulSoup
+
+<span style="color: #268bd2;">r</span> = requests.get(<span style="color: #2aa198;">'https://elpais.com/elpais/portada_america.html'</span>)
+<span style="color: #268bd2;">soup</span> = BeautifulSoup(r,text, <span style="color: #2aa198;">'html'</span>)
+
+<span style="color: #268bd2;">articles</span> = soup.find_all(<span style="color: #2aa198;">'article'</span>, attrs={<span style="color: #2aa198;">'class'</span>: <span style="color: #2aa198;">'articulo'</span>})
+<span style="color: #268bd2;">loc</span> = soup.find_all(<span style="color: #2aa198;">'span'</span>, attrs={<span style="color: #2aa198;">'class'</span>: <span style="color: #2aa198;">'articulo-localizacion'</span>})
+</pre>
+</div>
+
+<p>
+Using <code>calendar</code> and doing the proper formatting for months and days, it's easy to parse through a
+year of front-page articles. The resulting 33,285 articles contain:
+</p>
+
+<ol class="org-ol">
+<li>17,368 <b>not found</b> locations
+</li>
+<li>703 cities
+</li>
+<li>52 cities with more than 20 appearances in an article (See <a href="#fig:freq">1</a>)
+</li>
+<li>The most frequent city is Madrid (3327) following by Mexico City (2191)
+</li>
+</ol>
+
+
+<figure id="fig:freq">
+<p><img src="file:///Users/rdora/elpais/freq_city.png" class="img-responsive" alt="freq_city.png">
+</p>
+<figcaption><span class="figure-number">Figure 1:</span> Frequency of cities with more than 20 appearances in El País front-page, Latin American version.</figcaption>
+</figure>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Conclusion</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Even if the version I scanned was the Latin American version,
+</p>
+<ol class="org-ol">
+<li><b>Madrid</b> still upholds the most appearances
+</li>
+<li>Mexico City is second place
+</li>
+<li>Two U.S. cities are third and fourth
+</li>
+<li>Followed by Buenos Aires and Bogotá
+</li>
+</ol>
+
+<p>
+Overall, Latin American cities seem to be <b>over-represented</b> (world-wide-like), but <b>Mexico City</b> is
+the only Latin American city that appears to be preferred by the editors. Nonetheless, the journal is Spaniard and
+<b>Spanish news</b> seem to have the most articles even in the Latin American version of the newspaper.
+</p>
+</div>
+</div>
+</div><div class="col-md-3"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Introduction</a></li>
+<li><a href="#sec-2">2. Results</a></li>
+<li><a href="#sec-3">3. Conclusion</a></li>
+</ul>
+</div>
+</nav>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: Rodrigo Dorantes-Gilardi</p>
+<p class="date">Created: 2019-07-22 Mon 13:16</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org-mode</a> 9.2.3)</p>
+</div>
+</footer>
+</body>
+</html>
